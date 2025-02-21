@@ -46,12 +46,17 @@ async def get():
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     # accept the websocket connection
-
     # in a loop, get the new stock prices using get_new_stock_prices()
     # send the new stock prices to the client
     # sleep for 1 second
     # repeat
+    await websocket.accept()
+    while True:
+        data=get_new_stock_prices() 
+        await websocket.send_text(json.dumps(data))
+        await asynch.sleep(1)
     return
+
 
 if __name__ == "__main__":
     import uvicorn
