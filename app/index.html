@@ -33,7 +33,7 @@
         // update the chart data with new stock prices
         // update the price cards with the new stock prices and the previous prices
         ws. onmessage = function(event){
-            var data= json.parse(event.data);
+            var data= JSON.parse(event.data);
             updateChartData(data);
             updatePriceCards(data);
             Previousprices(...data,stocks);
